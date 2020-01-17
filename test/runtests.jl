@@ -1,6 +1,7 @@
 using MatMulExperiments: mulCAB!, gemmblas!, gemmavx!
 using MatMulExperiments: mulCABijp!, mulCABjip!, mulCABjpi!, mulCABipj!, mulCABpji!, mulCABpij!
 using MatMulExperiments: mulCABijpavx!, mulCABjipavx!, mulCABjpiavx!, mulCABipjavx!, mulCABpjiavx!, mulCABpijavx!
+using MatMulExperiments: mulCABijpinbounds!, mulCABjipinbounds!, mulCABjpiinbounds!, mulCABipjinbounds!, mulCABpjiinbounds!, mulCABpijinbounds!
 using LinearAlgebra
 using Test
 using BenchmarkTools
@@ -13,8 +14,9 @@ end
 
 
 foos = [mulCAB!, gemmblas!, gemmavx!]
-foos = [mulCABijp!, mulCABjip!, mulCABjpi!, mulCABipj!, mulCABpji!, mulCABpij!]
-foos = [mulCABijpavx!, mulCABjipavx!, mulCABjpiavx!, mulCABipjavx!, mulCABpjiavx!, mulCABpijavx!]
+# foos = [mulCABijp!, mulCABjip!, mulCABjpi!, mulCABipj!, mulCABpji!, mulCABpij!]
+# foos = [mulCABijpavx!, mulCABjipavx!, mulCABjpiavx!, mulCABipjavx!, mulCABpjiavx!, mulCABpijavx!]
+foos = [mulCABijpinbounds!, mulCABjipinbounds!, mulCABjpiinbounds!, mulCABipjinbounds!, mulCABpjiinbounds!, mulCABpijinbounds!]
 
 ns = 2:20:400
 Cs, As, Bs = Dict(), Dict(), Dict()
