@@ -7,22 +7,12 @@ table(foo) = begin
     [t[: ,1], n_gflops]
 end
 
-# foos = [:mulCAB!, :gemmblas!, :gemmavx!]
-foos = [:mulCABijp!, :mulCABjip!, :mulCABjpi!, :mulCABipj!, :mulCABpji!, :mulCABpij!]
-# foos = [:mulCABijpavx!, :mulCABjipavx!, :mulCABjpiavx!, :mulCABipjavx!, :mulCABpjiavx!, :mulCABpijavx!]
+set = "default"; foos = [:mulCAB!, :gemmblas!, :gemmavx!]; legendstring(foo) = "$foo"
+set = "plain"; foos = [:mulCABijp!, :mulCABjip!, :mulCABjpi!, :mulCABipj!, :mulCABpji!, :mulCABpij!]; legendstring(foo) = "$foo"[7:9]
+set = "avx"; foos = [:mulCABijpavx!, :mulCABjipavx!, :mulCABjpiavx!, :mulCABipjavx!, :mulCABpjiavx!, :mulCABpijavx!]; legendstring(foo) = "$foo"[7:9]
+set = "inbounds"; foos = [:mulCABijpinbounds!, :mulCABjipinbounds!, :mulCABjpiinbounds!, :mulCABipjinbounds!, :mulCABpjiinbounds!, :mulCABpijinbounds!]; legendstring(foo) = "$foo"[7:9]
+
 markers = ["o", "+", "triangle", "square", "x", "diamond"]
-# \pgfplotscreateplotcyclelist{my black white}{%
-# solid, every mark/.append style={solid, fill=gray}, mark=*\\%
-# dotted, every mark/.append style={solid, fill=gray}, mark=square*\\%
-# densely dotted, every mark/.append style={solid, fill=gray}, mark=otimes*\\%
-# loosely dotted, every mark/.append style={solid, fill=gray}, mark=triangle*\\%
-# dashed, every mark/.append style={solid, fill=gray},mark=diamond*\\%
-# loosely dashed, every mark/.append style={solid, fill=gray},mark=*\\%
-# densely dashed, every mark/.append style={solid, fill=gray},mark=square*\\%
-# dashdotted, every mark/.append style={solid, fill=gray},mark=otimes*\\%
-# dashdotdotted, every mark/.append style={solid},mark=star\\%
-# densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
-# }
 
 plots = [];
 
@@ -37,7 +27,7 @@ for (foo, m) in zip(foos, markers)
 	    Table(table(foo))
 	)
 	push!(plots, p);
-	push!(plots, LegendEntry("$foo"[7:9]));
+	push!(plots, LegendEntry(legendstring(foo)));
 end
 
 
@@ -45,9 +35,10 @@ end
     {
         xmajorgrids,
         ymajorgrids,
-        xlabel="Size of the matrix [ND]", ylabel="Speed [GFLOPS]"
+        xlabel="Size of the matrix [ND]", ylabel="Speed [GFLOPS]",
+        "legend pos"="outer north east"
     },
     plots...
 )
 
-pgfsave("gflops-slow.pdf", figure)
+pgfsave("gflops-$set.png", figure)
