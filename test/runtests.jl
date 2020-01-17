@@ -18,7 +18,7 @@ foos = [mulCAB!, gemmblas!, gemmavx!]
 # foos = [mulCABijpavx!, mulCABjipavx!, mulCABjpiavx!, mulCABipjavx!, mulCABpjiavx!, mulCABpijavx!]
 foos = [mulCABijpinbounds!, mulCABjipinbounds!, mulCABjpiinbounds!, mulCABipjinbounds!, mulCABpjiinbounds!, mulCABpijinbounds!]
 
-ns = 2:20:400
+ns = vcat(collect(2:50), collect(60:20:400))
 Cs, As, Bs = Dict(), Dict(), Dict()
 for n in ns
 	C, A, B = rand(n, n), rand(n, n), rand(n, n)
