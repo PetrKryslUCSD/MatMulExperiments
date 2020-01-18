@@ -11,12 +11,17 @@ The file `test/runtests.jl` produces measurements for square matrices, with
 
 Measurements are presented in these graphs:
 
+Default implementations:
 ![Default implementations](gflops-default.png) 
 
-[Naïve Julia](gflops-plain.png)  
+Naïve Julia:
+![Naïve Julia](gflops-plain.png)  
 
-[Julia with `@inbounds`](gflops-inbounds.png)  
+Julia with `@inbounds`:
+![Julia with `@inbounds`](gflops-inbounds.png)  
 
-[Julia with `@simd`](gflops-simd.png) 
+Julia with `@simd`:
+![Julia with `@simd`](gflops-simd.png) 
 
-[Julia with `@avx`](gflops-avx.png) 
+Julia with `@avx`:
+![Julia with `@avx`](gflops-avx.png) 
