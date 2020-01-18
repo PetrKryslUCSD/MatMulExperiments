@@ -2,6 +2,7 @@ using MatMulExperiments: mulCAB!, gemmblas!, gemmavx!
 using MatMulExperiments: mulCABijp!, mulCABjip!, mulCABjpi!, mulCABipj!, mulCABpji!, mulCABpij!
 using MatMulExperiments: mulCABijpavx!, mulCABjipavx!, mulCABjpiavx!, mulCABipjavx!, mulCABpjiavx!, mulCABpijavx!
 using MatMulExperiments: mulCABijpinbounds!, mulCABjipinbounds!, mulCABjpiinbounds!, mulCABipjinbounds!, mulCABpjiinbounds!, mulCABpijinbounds!
+using MatMulExperiments: mulCABijpsimd!, mulCABjipsimd!, mulCABjpisimd!, mulCABipjsimd!, mulCABpjisimd!, mulCABpijsimd!
 using LinearAlgebra
 using Test
 using BenchmarkTools
@@ -16,9 +17,10 @@ end
 foos = [mulCAB!, gemmblas!, gemmavx!]
 # foos = [mulCABijp!, mulCABjip!, mulCABjpi!, mulCABipj!, mulCABpji!, mulCABpij!]
 # foos = [mulCABijpavx!, mulCABjipavx!, mulCABjpiavx!, mulCABipjavx!, mulCABpjiavx!, mulCABpijavx!]
-foos = [mulCABijpinbounds!, mulCABjipinbounds!, mulCABjpiinbounds!, mulCABipjinbounds!, mulCABpjiinbounds!, mulCABpijinbounds!]
+# foos = [mulCABijpinbounds!, mulCABjipinbounds!, mulCABjpiinbounds!, mulCABipjinbounds!, mulCABpjiinbounds!, mulCABpijinbounds!]
+foos = [mulCABijpsimd!, mulCABjipsimd!, mulCABjpisimd!, mulCABipjsimd!, mulCABpjisimd!, mulCABpijsimd!]
 
-ns = vcat(collect(2:50), collect(60:20:400))
+ns = sort(vcat(collect(2:50), collect(60:20:400), collect(63:30:400)))
 Cs, As, Bs = Dict(), Dict(), Dict()
 for n in ns
 	C, A, B = rand(n, n), rand(n, n), rand(n, n)

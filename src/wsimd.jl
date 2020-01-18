@@ -1,83 +1,87 @@
 
-function mulCABijpinbounds!(C, A, B)
+function mulCABijpsimd!(C, A, B)
 	M, N = size(C); K = size(B,1)
 	@assert M == size(A, 1)
     @assert N == size(B, 2)
     @assert size(A, 2) == K
     C .= 0
-	@inbounds for i in 1:M, j in 1:N
-		@inbounds for p in 1:K
+	for i in 1:M, j in 1:N
+		@simd for p in 1:K
 	        C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
 end
 
-function mulCABjipinbounds!(C, A, B)
+function mulCABjipsimd!(C, A, B)
 	M, N = size(C); K = size(B,1)
 	@assert M == size(A, 1)
     @assert N == size(B, 2)
     @assert size(A, 2) == K
     C .= 0
-	@inbounds for j in 1:N, i in 1:M
-		@inbounds for p in 1:K
+	for j in 1:N, i in 1:M
+		@simd for p in 1:K
 	        C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
 end
 
-function mulCABipjinbounds!(C, A, B)
+function mulCABipjsimd!(C, A, B)
 	M, N = size(C); K = size(B,1)
 	@assert M == size(A, 1)
     @assert N == size(B, 2)
     @assert size(A, 2) == K
     C .= 0
-	@inbounds for i in 1:M, p in 1:K
-		@inbounds for j in 1:N
+	for i in 1:M, p in 1:K
+		@simd for j in 1:N
 	        C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
 end
 
-function mulCABjpiinbounds!(C, A, B)
+function mulCABjpisimd!(C, A, B)
 	M, N = size(C); K = size(B,1)
 	@assert M == size(A, 1)
     @assert N == size(B, 2)
     @assert size(A, 2) == K
     C .= 0
-	@inbounds for j in 1:N, p in 1:K
-		@inbounds for i in 1:M
+	for j in 1:N, p in 1:K
+		@simd for i in 1:M
 	        C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
 end
 
-function mulCABpijinbounds!(C, A, B)
+function mulCABpijsimd!(C, A, B)
 	M, N = size(C); K = size(B,1)
 	@assert M == size(A, 1)
     @assert N == size(B, 2)
     @assert size(A, 2) == K
     C .= 0
-	@inbounds for p in 1:K
-		@inbounds for i in 1:M, j in 1:N
-	        C[i,j] += A[i,p] * B[p,j]
-	    end
+	for p in 1:K
+		for i in 1:M
+			@simd for j in 1:N
+		        C[i,j] += A[i,p] * B[p,j]
+		    end
+		end
 	end
 	return C
 end
 
-function mulCABpjiinbounds!(C, A, B)
+function mulCABpjisimd!(C, A, B)
 	M, N = size(C); K = size(B,1)
 	@assert M == size(A, 1)
     @assert N == size(B, 2)
     @assert size(A, 2) == K
     C .= 0
-	@inbounds for p in 1:K
-		@inbounds for j in 1:N, i in 1:M
-	        C[i,j] += A[i,p] * B[p,j]
+	for p in 1:K
+		for j in 1:N
+			@simd for i in 1:M
+	        	C[i,j] += A[i,p] * B[p,j]
+	        end
 	    end
 	end
 	return C
