@@ -15,7 +15,7 @@ end
 
 
 foos = [mulCAB!, gemmblas!, gemmavx!]
-# foos = [mulCABijp!, mulCABjip!, mulCABjpi!, mulCABipj!, mulCABpji!, mulCABpij!]
+foos = [mulCABijp!, mulCABjip!, mulCABjpi!, mulCABipj!, mulCABpji!, mulCABpij!]
 # foos = [mulCABijpavx!, mulCABjipavx!, mulCABjpiavx!, mulCABipjavx!, mulCABpjiavx!, mulCABpijavx!]
 # foos = [mulCABijpinbounds!, mulCABjipinbounds!, mulCABjpiinbounds!, mulCABipjinbounds!, mulCABpjiinbounds!, mulCABpijinbounds!]
 foos = [mulCABijpsimd!, mulCABjipsimd!, mulCABjpisimd!, mulCABipjsimd!, mulCABpjisimd!, mulCABpijsimd!]

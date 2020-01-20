@@ -8,7 +8,7 @@ table(foo) = begin
 end
 
 set = "default"; foos = [:mulCAB!, :gemmblas!, :gemmavx!]; legendstring(foo) = "$foo"
-# set = "plain"; foos = [:mulCABijp!, :mulCABjip!, :mulCABjpi!, :mulCABipj!, :mulCABpji!, :mulCABpij!]; legendstring(foo) = "$foo"[7:9]
+set = "plain"; foos = [:mulCABijp!, :mulCABjip!, :mulCABjpi!, :mulCABipj!, :mulCABpji!, :mulCABpij!]; legendstring(foo) = "$foo"[7:9]
 # set = "avx"; foos = [:mulCABijpavx!, :mulCABjipavx!, :mulCABjpiavx!, :mulCABipjavx!, :mulCABpjiavx!, :mulCABpijavx!]; legendstring(foo) = "$foo"[7:9]
 # set = "inbounds"; foos = [:mulCABijpinbounds!, :mulCABjipinbounds!, :mulCABjpiinbounds!, :mulCABipjinbounds!, :mulCABpjiinbounds!, :mulCABpijinbounds!]; legendstring(foo) = "$foo"[7:9]
 set = "simd"; foos = [:mulCABijpsimd!, :mulCABjipsimd!, :mulCABjpisimd!, :mulCABipjsimd!, :mulCABpjisimd!, :mulCABpijsimd!]; legendstring(foo) = "$foo"[7:9]
