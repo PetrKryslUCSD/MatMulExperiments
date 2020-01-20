@@ -7,7 +7,7 @@ function mulCABijpsimd!(C, A, B)
     C .= 0
 	for i in 1:M, j in 1:N
 		@simd for p in 1:K
-	        C[i,j] += A[i,p] * B[p,j]
+	        @inbounds C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
@@ -21,7 +21,7 @@ function mulCABjipsimd!(C, A, B)
     C .= 0
 	for j in 1:N, i in 1:M
 		@simd for p in 1:K
-	        C[i,j] += A[i,p] * B[p,j]
+	        @inbounds C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
@@ -35,7 +35,7 @@ function mulCABipjsimd!(C, A, B)
     C .= 0
 	for i in 1:M, p in 1:K
 		@simd for j in 1:N
-	        C[i,j] += A[i,p] * B[p,j]
+	        @inbounds C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
@@ -49,7 +49,7 @@ function mulCABjpisimd!(C, A, B)
     C .= 0
 	for j in 1:N, p in 1:K
 		@simd for i in 1:M
-	        C[i,j] += A[i,p] * B[p,j]
+	        @inbounds C[i,j] += A[i,p] * B[p,j]
 	    end
 	end
 	return C
@@ -64,7 +64,7 @@ function mulCABpijsimd!(C, A, B)
 	for p in 1:K
 		for i in 1:M
 			@simd for j in 1:N
-		        C[i,j] += A[i,p] * B[p,j]
+		        @inbounds C[i,j] += A[i,p] * B[p,j]
 		    end
 		end
 	end
@@ -80,7 +80,7 @@ function mulCABpjisimd!(C, A, B)
 	for p in 1:K
 		for j in 1:N
 			@simd for i in 1:M
-	        	C[i,j] += A[i,p] * B[p,j]
+	        	@inbounds C[i,j] += A[i,p] * B[p,j]
 	        end
 	    end
 	end
